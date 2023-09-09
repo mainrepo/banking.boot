@@ -1,0 +1,9 @@
+rootProject.name = 'banking.boot'
+
+include 'banking.service'
+include 'banking.application'
+include 'banking.repositories'
+
+project(':banking.service').projectDir = file('./service')
+project(':banking.application').projectDir = file('./application')
+project(':banking.repositories').projectDir = file('./repositories')

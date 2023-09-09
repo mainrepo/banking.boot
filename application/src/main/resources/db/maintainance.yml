@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/tables.yml  		
+  - include:
+      file: db/changelog/loading.yml  		

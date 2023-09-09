@@ -1,0 +1,27 @@
+dependencies {
+	implementation project(':banking.repositories')
+	
+	implementation "org.webjars:swagger-ui:${swaggerUiVesrion}"
+    implementation "io.projectreactor:reactor-core:${reactorVersion}"
+	implementation "org.apache.cxf:cxf-spring-boot-starter-jaxrs:${openApiVersion}"
+    implementation "org.apache.cxf:cxf-rt-rs-service-description-swagger-ui:${openApiVersion}"
+    implementation "org.apache.cxf:cxf-rt-rs-service-description-openapi-v3:${openApiVersion}"
+		
+	implementation 'org.springframework.boot:spring-boot-starter-jersey'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    
+    implementation "io.jsonwebtoken:jjwt-api:${webtokenVersion}"
+    
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:${webtokenVersion}",
+            // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+            //'org.bouncycastle:bcprov-jdk15on:1.60',
+            "io.jsonwebtoken:jjwt-jackson:${webtokenVersion}"
+            
+	testImplementation('org.springframework.boot:spring-boot-starter-aop')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	
+	//implementation 'org.springframework.boot:spring-boot-starter-jersey'
+	//implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+}

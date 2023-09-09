@@ -1,0 +1,76 @@
+buildscript {
+	ext {
+		cuidVersion = '0.1.1'
+		rprtrVersion = '0.5.0'
+		slf4jVersion = '1.7.21'
+		openApiVersion = '3.2.9'
+		logbackVersion = '1.1.7'
+		webtokenVersion = '0.10.5'
+		swaggerUiVesrion = '3.13.6'
+		reactorVersion = '3.1.8.RELEASE'
+		platformVersion = '2.0.8.RELEASE'
+		springBootVersion = '2.1.4.RELEASE'
+		dependencyPluginVersion = '1.0.6.RELEASE'
+	}
+	
+	repositories {
+		jcenter()
+		mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url 'http://repo.spring.io/plugins-release' }
+	}
+	
+	dependencies {
+		classpath "com.github.ksoichiro:gradle-console-reporter:${rprtrVersion}"
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:${dependencyPluginVersion}"
+	}
+}
+	
+subprojects{
+	apply plugin: 'java'
+	apply plugin: 'groovy'
+	apply plugin: 'jacoco'
+	apply plugin: 'io.spring.dependency-management'
+	
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	//version = '1.0.RELEASE'
+	group = 'org.bootchassis'
+	
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	repositories {
+		mavenCentral()
+	
+		maven {url 'http://repo.spring.io/snapshot'}
+	
+		maven {url 'http://repo.spring.io/milestone'}
+	
+		maven {url 'http://repo.spring.io/libs-snapshot'}
+	}
+	
+	dependencies {
+		implementation "cool.graph:cuid-java:${cuidVersion}"
+		implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+		implementation "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+		implementation "ch.qos.logback:logback-core:${logbackVersion}"
+		implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+		
+		implementation 'com.fasterxml.jackson.core:jackson-core'
+	
+		runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+		
+		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	}
+	
+	dependencyManagement {
+		imports {
+			mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+		}
+	}
+}

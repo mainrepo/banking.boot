@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/microjava
+    username: postgres
+    password: Admin#032
+  jpa:
+    hibernate:
+      #ddl-auto: create-drop

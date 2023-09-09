@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1001122000_DDL
+      author: admin
+      changes:
+      - createTable:
+          tableName: account
+          columns:
+          - column:
+              name: id
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                primaryKeyName: pk_account
+                nullable: false
+          - column:
+              name: name
+              type: VARCHAR(50)
+          - column:
+              name: user
+              type: VARCHAR(150)
+          - column:
+              name: amount
+              type: DOUBLE
+          - column:
+              name: balance
+              type: DOUBLE
+          - column:
+              name: type
+              type: VARCHAR(15)
+          - column:
+              name: updated
+              type: VARCHAR(25)
+          - column:
+              name: active
+              type: VARCHAR(5)
+          
+      - createTable:
+          tableName: account_history
+          columns:
+          - column:
+              name: id
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                primaryKeyName: pk_account_history
+                nullable: false
+          - column:
+              name: amount
+              type: VARCHAR(50)
+          - column:
+              name: user
+              type: VARCHAR(50)
+          - column:
+              name: updated
+              type: VARCHAR(25)
+          - column:
+              name: active
+              type: VARCHAR(5)
+          
+      - createTable:
+          tableName: history_link
+          columns:
+          - column:
+              name: id
+              type: BIGINT
+              autoIncrement: true
+              constraints:
+                primaryKey: true
+                primaryKeyName: pk_history_link
+                nullable: false
+          - column:
+              name: account_id
+              type: BIGINT
+          - column:
+              name: history_id
+              type: BIGINT
+          - column:
+              name: updated
+              type: VARCHAR(25)
+          - column:
+              name: active
+              type: VARCHAR(5)
+              

@@ -1,0 +1,61 @@
+threadPool: 10
+email: gaurav.joshi@email.com
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: INFO
+    org.springframework: ERROR
+
+server:
+  #port:0
+  port: 8181
+  #responses must be at least 2048 bytes in length for compression to be performed
+  #compression.enabled=true
+
+cxf:
+  path: /api
+  jaxrs:
+    component-scan: true
+    classes-scan-packages: org.microjava, org.apache.cxf.metrics
+    
+spring:
+  liquibase:
+    #contexts: dev
+    #enabled: true
+    changeLog: classpath:db/maintainance.yml
+  jpa:
+    hibernate:
+      showSql: false
+      naming:
+        physicalStrategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      
+  #reactor.stacktracemode.enabled: false
+  
+  profiles:
+    active: mem  
+ 
+management:
+  #port used to expose actuator
+  port: 8081
+  #CIDR allowed to hit actuator
+  address: 127.0.0.1, localhost
+  #Whether security should be enabled or disabled altogether
+  security:
+    enabled: false
+  endpoint:
+    shutdown.enabled: true
+    web:
+      exposure:
+        include: '*'
+        exclude: env,beans
+  health:
+    #management.endpoint.health.roles
+    show-details: always 
+    ## never | when-authorized
+    status:
+      order: BLANK, DOWN, OUT_OF_SERVICE, UNKNOWN, UP
+      http-mapping.BLANK: 503
+        
+#main.web-application-type:none
